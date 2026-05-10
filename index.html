@@ -133,13 +133,13 @@
         .nav-item.active { background: rgba(255,255,255,0.15); color: #fff; font-weight: 500; }
 
         /* 可折叠导航 */
-        .nav-group { margin-bottom: 4px; }
+        .nav-group { margin-bottom: 2px; }
 
         .nav-group-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 12px 16px;
+            padding: 10px 16px;
             color: #fff;
             font-size: 14px;
             font-weight: 600;
@@ -152,8 +152,22 @@
         .nav-group.collapsed .arrow { transform: rotate(-90deg); }
         .nav-group.collapsed .nav-group-items { max-height: 0; overflow: hidden; }
 
-        .nav-group-items { max-height: 500px; transition: max-height 0.3s ease; overflow: hidden; }
+        .nav-group-items { max-height: 1000px; transition: max-height 0.3s ease; overflow: hidden; }
         .nav-group-items .nav-item { padding-left: 32px; font-size: 13px; padding: 8px 16px 8px 32px; }
+
+        /* 二级菜单样式 */
+        .nav-group-items .nav-group-header {
+            padding: 8px 16px 8px 24px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        /* 三级菜单样式 */
+        .nav-group-items .nav-group-items .nav-item {
+            padding-left: 40px;
+            font-size: 12px;
+            padding: 6px 16px 6px 40px;
+        }
 
         /* 主内容区 */
         .main-content {
@@ -373,101 +387,119 @@
             <a class="nav-item active" onclick="showSection('overview')">设计思路</a>
         </div>
 
-        <!-- 活动方案（可折叠） -->
-        <div class="nav-section">
-            <div class="nav-section-title">活动方案</div>
-            <div class="nav-group" id="group-activity1">
-                <div class="nav-group-header" onclick="toggleGroup('group-activity1')">
-                    <span>活动一：免费引流体系</span>
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="nav-group-items">
-                    <a class="nav-item" onclick="showSection('free-traffic')">免费引流活动</a>
-                    <a class="nav-item" onclick="showSection('family-package')">家庭套餐活动</a>
-                    <a class="nav-item" onclick="showSection('referral')">裂变推荐活动</a>
-                    <a class="nav-item" onclick="showSection('membership')">口腔管家卡</a>
-                </div>
+        <!-- 活动方案（三级折叠） -->
+        <div class="nav-group collapsed" id="group-activity">
+            <div class="nav-group-header" onclick="toggleGroup('group-activity')">
+                <span>活动方案</span>
+                <span class="arrow">▼</span>
             </div>
-            <div class="nav-group collapsed" id="group-activity2">
-                <div class="nav-group-header" onclick="toggleGroup('group-activity2')">
-                    <span>活动二：节日主题营销</span>
-                    <span class="arrow">▼</span>
+            <div class="nav-group-items">
+                <!-- 活动一 -->
+                <div class="nav-group collapsed" id="group-activity1">
+                    <div class="nav-group-header" onclick="toggleGroup('group-activity1')">
+                        <span>活动一：免费引流体系</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="nav-group-items">
+                        <a class="nav-item" onclick="showSection('free-traffic')">免费引流活动</a>
+                        <a class="nav-item" onclick="showSection('family-package')">家庭套餐活动</a>
+                        <a class="nav-item" onclick="showSection('referral')">裂变推荐活动</a>
+                        <a class="nav-item" onclick="showSection('membership')">口腔管家卡</a>
+                    </div>
                 </div>
-                <div class="nav-group-items">
-                    <a class="nav-item" onclick="showSection('festival-children')">儿童节主题活动</a>
-                    <a class="nav-item" onclick="showSection('festival-loveteeth')">爱牙日主题活动</a>
-                    <a class="nav-item" onclick="showSection('festival-holiday')">节日限时优惠</a>
+                <!-- 活动二 -->
+                <div class="nav-group collapsed" id="group-activity2">
+                    <div class="nav-group-header" onclick="toggleGroup('group-activity2')">
+                        <span>活动二：节日主题营销</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="nav-group-items">
+                        <a class="nav-item" onclick="showSection('festival-children')">儿童节主题活动</a>
+                        <a class="nav-item" onclick="showSection('festival-loveteeth')">爱牙日主题活动</a>
+                        <a class="nav-item" onclick="showSection('festival-holiday')">节日限时优惠</a>
+                    </div>
                 </div>
-            </div>
-            <div class="nav-group collapsed" id="group-activity3">
-                <div class="nav-group-header" onclick="toggleGroup('group-activity3')">
-                    <span>活动三：会员深度运营</span>
-                    <span class="arrow">▼</span>
+                <!-- 活动三 -->
+                <div class="nav-group collapsed" id="group-activity3">
+                    <div class="nav-group-header" onclick="toggleGroup('group-activity3')">
+                        <span>活动三：会员深度运营</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="nav-group-items">
+                        <a class="nav-item" onclick="showSection('vip-level')">会员等级体系</a>
+                        <a class="nav-item" onclick="showSection('vip-points')">积分兑换活动</a>
+                        <a class="nav-item" onclick="showSection('vip-birthday')">生日专属特权</a>
+                    </div>
                 </div>
-                <div class="nav-group-items">
-                    <a class="nav-item" onclick="showSection('vip-level')">会员等级体系</a>
-                    <a class="nav-item" onclick="showSection('vip-points')">积分兑换活动</a>
-                    <a class="nav-item" onclick="showSection('vip-birthday')">生日专属特权</a>
-                </div>
-            </div>
-            <div class="nav-group collapsed" id="group-activity4">
-                <div class="nav-group-header" onclick="toggleGroup('group-activity4')">
-                    <span>活动四：渠道深度合作</span>
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="nav-group-items">
-                    <a class="nav-item" onclick="showSection('channel-school')">学校合作方案</a>
-                    <a class="nav-item" onclick="showSection('channel-company')">企业团检方案</a>
-                    <a class="nav-item" onclick="showSection('channel-community')">社区定点服务</a>
+                <!-- 活动四 -->
+                <div class="nav-group collapsed" id="group-activity4">
+                    <div class="nav-group-header" onclick="toggleGroup('group-activity4')">
+                        <span>活动四：渠道深度合作</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="nav-group-items">
+                        <a class="nav-item" onclick="showSection('channel-school')">学校合作方案</a>
+                        <a class="nav-item" onclick="showSection('channel-company')">企业团检方案</a>
+                        <a class="nav-item" onclick="showSection('channel-community')">社区定点服务</a>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- 运营工具（可折叠） -->
-        <div class="nav-section">
-            <div class="nav-section-title">运营工具</div>
-            <div class="nav-group collapsed" id="group-tool1">
-                <div class="nav-group-header" onclick="toggleGroup('group-tool1')">
-                    <span>工具一：日常执行清单</span>
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="nav-group-items">
-                    <a class="nav-item" onclick="showSection('tool-daily')">每日执行清单</a>
-                    <a class="nav-item" onclick="showSection('tool-weekly')">每周执行清单</a>
-                    <a class="nav-item" onclick="showSection('tool-monthly')">每月执行清单</a>
-                </div>
+        <!-- 运营工具（三级折叠） -->
+        <div class="nav-group collapsed" id="group-tools">
+            <div class="nav-group-header" onclick="toggleGroup('group-tools')">
+                <span>运营工具</span>
+                <span class="arrow">▼</span>
             </div>
-            <div class="nav-group collapsed" id="group-tool2">
-                <div class="nav-group-header" onclick="toggleGroup('group-tool2')">
-                    <span>工具二：客户跟进模板</span>
-                    <span class="arrow">▼</span>
+            <div class="nav-group-items">
+                <!-- 工具一 -->
+                <div class="nav-group collapsed" id="group-tool1">
+                    <div class="nav-group-header" onclick="toggleGroup('group-tool1')">
+                        <span>工具一：日常执行清单</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="nav-group-items">
+                        <a class="nav-item" onclick="showSection('tool-daily')">每日执行清单</a>
+                        <a class="nav-item" onclick="showSection('tool-weekly')">每周执行清单</a>
+                        <a class="nav-item" onclick="showSection('tool-monthly')">每月执行清单</a>
+                    </div>
                 </div>
-                <div class="nav-group-items">
-                    <a class="nav-item" onclick="showSection('tool-follow-new')">新客户跟进模板</a>
-                    <a class="nav-item" onclick="showSection('tool-follow-old')">老客户维护模板</a>
-                    <a class="nav-item" onclick="showSection('tool-follow-festival')">节日回访模板</a>
+                <!-- 工具二 -->
+                <div class="nav-group collapsed" id="group-tool2">
+                    <div class="nav-group-header" onclick="toggleGroup('group-tool2')">
+                        <span>工具二：客户跟进模板</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="nav-group-items">
+                        <a class="nav-item" onclick="showSection('tool-follow-new')">新客户跟进模板</a>
+                        <a class="nav-item" onclick="showSection('tool-follow-old')">老客户维护模板</a>
+                        <a class="nav-item" onclick="showSection('tool-follow-festival')">节日回访模板</a>
+                    </div>
                 </div>
-            </div>
-            <div class="nav-group collapsed" id="group-tool3">
-                <div class="nav-group-header" onclick="toggleGroup('group-tool3')">
-                    <span>工具三：数据统计表格</span>
-                    <span class="arrow">▼</span>
+                <!-- 工具三 -->
+                <div class="nav-group collapsed" id="group-tool3">
+                    <div class="nav-group-header" onclick="toggleGroup('group-tool3')">
+                        <span>工具三：数据统计表格</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="nav-group-items">
+                        <a class="nav-item" onclick="showSection('tool-stat-week')">每周统计表</a>
+                        <a class="nav-item" onclick="showSection('tool-stat-month')">月度统计表</a>
+                        <a class="nav-item" onclick="showSection('tool-stat-year')">年度汇总表</a>
+                    </div>
                 </div>
-                <div class="nav-group-items">
-                    <a class="nav-item" onclick="showSection('tool-stat-week')">每周统计表</a>
-                    <a class="nav-item" onclick="showSection('tool-stat-month')">月度统计表</a>
-                    <a class="nav-item" onclick="showSection('tool-stat-year')">年度汇总表</a>
-                </div>
-            </div>
-            <div class="nav-group collapsed" id="group-tool4">
-                <div class="nav-group-header" onclick="toggleGroup('group-tool4')">
-                    <span>工具四：物料管理清单</span>
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="nav-group-items">
-                    <a class="nav-item" onclick="showSection('tool-material-activity')">活动物料清单</a>
-                    <a class="nav-item" onclick="showSection('tool-material-stock')">常备物料清单</a>
-                    <a class="nav-item" onclick="showSection('tool-material-buy')">采购计划表</a>
+                <!-- 工具四 -->
+                <div class="nav-group collapsed" id="group-tool4">
+                    <div class="nav-group-header" onclick="toggleGroup('group-tool4')">
+                        <span>工具四：物料管理清单</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="nav-group-items">
+                        <a class="nav-item" onclick="showSection('tool-material-activity')">活动物料清单</a>
+                        <a class="nav-item" onclick="showSection('tool-material-stock')">常备物料清单</a>
+                        <a class="nav-item" onclick="showSection('tool-material-buy')">采购计划表</a>
+                    </div>
                 </div>
             </div>
         </div>
