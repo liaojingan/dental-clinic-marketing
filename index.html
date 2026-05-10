@@ -106,7 +106,7 @@
             position: fixed;
             left: 0;
             top: 0;
-            width: 260px;
+            width: 280px;
             height: 100vh;
             background: linear-gradient(180deg, #4A90A4 0%, #3A7A8F 100%);
             padding: 20px 0;
@@ -124,26 +124,25 @@
 
         .sidebar-header h1 {
             color: #fff;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 600;
         }
 
         .sidebar-header p {
             color: rgba(255,255,255,0.8);
-            font-size: 13px;
+            font-size: 12px;
             margin-top: 8px;
         }
 
         .nav-section {
-            padding: 0 12px;
-            margin-bottom: 16px;
+            margin-bottom: 8px;
         }
 
         .nav-section-title {
             color: rgba(255,255,255,0.6);
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 500;
-            padding: 8px 12px;
+            padding: 8px 16px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -152,28 +151,73 @@
             display: block;
             color: rgba(255,255,255,0.9);
             text-decoration: none;
-            padding: 12px 16px;
-            border-radius: 8px;
-            margin: 4px 0;
+            padding: 10px 16px 10px 24px;
             font-size: 14px;
             transition: all 0.2s ease;
             cursor: pointer;
         }
 
         .nav-item:hover {
-            background: rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.1);
             color: #fff;
         }
 
         .nav-item.active {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.15);
             color: #fff;
             font-weight: 500;
         }
 
+        /* 可折叠导航 */
+        .nav-group {
+            margin-bottom: 4px;
+        }
+
+        .nav-group-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .nav-group-header:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .nav-group-header .arrow {
+            transition: transform 0.3s ease;
+            font-size: 12px;
+        }
+
+        .nav-group.collapsed .arrow {
+            transform: rotate(-90deg);
+        }
+
+        .nav-group.collapsed .nav-group-items {
+            max-height: 0;
+            overflow: hidden;
+        }
+
+        .nav-group-items {
+            max-height: 500px;
+            transition: max-height 0.3s ease;
+            overflow: hidden;
+        }
+
+        .nav-group-items .nav-item {
+            padding-left: 32px;
+            font-size: 13px;
+            padding: 8px 16px 8px 32px;
+        }
+
         /* 主内容区 */
         .main-content {
-            margin-left: 260px;
+            margin-left: 280px;
             padding: 40px 60px;
             max-width: 1200px;
         }
@@ -200,6 +244,14 @@
             padding-bottom: 12px;
             border-bottom: 3px solid #E8956F;
             display: inline-block;
+        }
+
+        .section-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 24px;
+            padding-left: 12px;
+            border-left: 3px solid #E8956F;
         }
 
         .card {
@@ -242,7 +294,7 @@
             font-size: 14px;
         }
 
-        /* 表格容器 - 支持横向滚动 */
+        /* 表格容器 */
         .table-container {
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
@@ -335,20 +387,11 @@
             margin-right: 4px;
         }
 
-        .tag-free {
-            background: #E8F5E9;
-            color: #2E7D32;
-        }
-
-        .tag-discount {
-            background: #FFF3E0;
-            color: #E65100;
-        }
-
-        .tag-hot {
-            background: #FFEBEE;
-            color: #C62828;
-        }
+        .tag-free { background: #E8F5E9; color: #2E7D32; }
+        .tag-discount { background: #FFF3E0; color: #E65100; }
+        .tag-hot { background: #FFEBEE; color: #C62828; }
+        .tag-new { background: #E3F2FD; color: #1565C0; }
+        .tag-low { background: #F3E5F5; color: #7B1FA2; }
 
         /* 高亮框 */
         .highlight-box {
@@ -368,6 +411,18 @@
             color: rgba(255,255,255,0.9);
             margin-bottom: 6px;
             font-size: 13px;
+        }
+
+        .highlight-box.orange {
+            background: linear-gradient(135deg, #E8956F 0%, #D17A4F 100%);
+        }
+
+        .highlight-box.green {
+            background: linear-gradient(135deg, #66BB6A 0%, #43A047 100%);
+        }
+
+        .highlight-box.purple {
+            background: linear-gradient(135deg, #AB47BC 0%, #8E24AA 100%);
         }
 
         /* 列表样式 */
@@ -419,6 +474,14 @@
             background: linear-gradient(135deg, #E8956F 0%, #F0A57F 100%);
         }
 
+        .stat-card.green {
+            background: linear-gradient(135deg, #66BB6A 0%, #81C784 100%);
+        }
+
+        .stat-card.purple {
+            background: linear-gradient(135deg, #AB47BC 0%, #BA68C8 100%);
+        }
+
         .stat-card h3 {
             font-size: 24px;
             margin-bottom: 4px;
@@ -430,155 +493,54 @@
             margin: 0;
         }
 
-        /* ==================== 响应式设计 ==================== */
-
-        /* 平板设备 */
-        @media (max-width: 1024px) {
-            .sidebar {
-                width: 220px;
-            }
-            .main-content {
-                margin-left: 220px;
-                padding: 30px 40px;
-            }
+        /* 成本标签 */
+        .cost-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 12px;
+            background: #E8F5E9;
+            color: #2E7D32;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
         }
 
-        /* 手机设备 */
+        /* ==================== 响应式设计 ==================== */
+
+        @media (max-width: 1024px) {
+            .sidebar { width: 240px; }
+            .main-content { margin-left: 240px; padding: 30px 40px; }
+        }
+
         @media (max-width: 768px) {
-            /* 显示移动端头部 */
-            .mobile-header {
-                display: flex;
-            }
-
-            /* 隐藏侧边栏头部标题 */
-            .sidebar-header {
-                display: none;
-            }
-
-            /* 侧边栏默认隐藏 */
+            .mobile-header { display: flex; }
+            .sidebar-header { display: none; }
             .sidebar {
                 position: fixed;
-                top: 0;
-                left: 0;
                 width: 280px;
                 height: 100vh;
                 transform: translateX(-100%);
                 padding-top: 20px;
                 z-index: 1000;
             }
-
-            .sidebar.active {
-                transform: translateX(0);
-            }
-
-            /* 主内容区 */
+            .sidebar.active { transform: translateX(0); }
             .main-content {
                 margin-left: 0;
                 margin-top: 56px;
                 padding: 16px;
                 max-width: 100%;
             }
-
-            .section-title {
-                font-size: 20px;
-                margin-bottom: 16px;
-                padding-bottom: 10px;
-            }
-
-            .card {
-                padding: 16px;
-                margin-bottom: 16px;
-                border-radius: 10px;
-            }
-
-            .card-title {
-                font-size: 15px;
-                margin-bottom: 12px;
-            }
-
-            .card-title::before {
-                height: 16px;
-            }
-
-            /* 表格 */
-            .table-container {
-                margin: 10px -12px;
-                padding: 0 12px;
-            }
-
-            table {
-                font-size: 12px;
-                min-width: 400px;
-            }
-
-            th, td {
-                padding: 8px 10px;
-            }
-
-            /* 流程图 */
-            .flow-diagram {
-                padding: 16px 12px;
-            }
-
-            .flow-step {
-                padding: 10px 14px;
-                font-size: 12px;
-                margin: 4px;
-            }
-
-            /* 统计卡片 */
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-
-            .stat-card {
-                padding: 14px 10px;
-            }
-
-            .stat-card h3 {
-                font-size: 20px;
-            }
-
-            /* 高亮框 */
-            .highlight-box {
-                padding: 14px 16px;
-            }
-
-            /* 话术框 */
-            .quote-box {
-                padding: 10px 14px;
-            }
-
-            /* 列表 */
-            ul, ol {
-                padding-left: 18px;
-            }
-
-            li {
-                font-size: 13px;
-            }
-
-            /* 导航项 */
-            .nav-item {
-                padding: 14px 16px;
-                font-size: 15px;
-            }
-        }
-
-        /* 小屏手机 */
-        @media (max-width: 375px) {
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .section-title {
-                font-size: 18px;
-            }
-
-            .card-title {
-                font-size: 14px;
-            }
+            .section-title { font-size: 20px; margin-bottom: 16px; }
+            .card { padding: 16px; margin-bottom: 16px; }
+            .card-title { font-size: 15px; }
+            .table-container { margin: 10px -12px; padding: 0 12px; }
+            table { font-size: 12px; min-width: 400px; }
+            th, td { padding: 8px 10px; }
+            .flow-step { padding: 10px 14px; font-size: 12px; margin: 4px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .stat-card { padding: 14px 10px; }
+            .stat-card h3 { font-size: 20px; }
         }
     </style>
 </head>
@@ -601,111 +563,169 @@
     <nav class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <h1>牙科诊所营销方案</h1>
-            <p>活动策划与执行手册</p>
+            <p>四套可落地方案 · 低成本运营</p>
         </div>
 
         <div class="nav-section">
             <div class="nav-section-title">概览</div>
-            <a href="#overview" class="nav-item active" onclick="showSection('overview')">设计思路</a>
+            <a class="nav-item active" onclick="showSection('overview')">设计思路</a>
         </div>
 
+        <!-- 活动方案（可折叠） -->
         <div class="nav-section">
             <div class="nav-section-title">活动方案</div>
-            <a href="#free-traffic" class="nav-item" onclick="showSection('free-traffic')">免费引流活动</a>
-            <a href="#family-package" class="nav-item" onclick="showSection('family-package')">家庭套餐活动</a>
-            <a href="#referral" class="nav-item" onclick="showSection('referral')">裂变推荐活动</a>
-            <a href="#membership" class="nav-item" onclick="showSection('membership')">口腔管家卡</a>
-        </div>
 
-        <div class="nav-section">
-            <div class="nav-section-title">执行手册</div>
-            <a href="#filling-tooth" class="nav-item" onclick="showSection('filling-tooth')">补牙活动执行</a>
-            <a href="#denture" class="nav-item" onclick="showSection('denture')">镶牙活动执行</a>
-            <a href="#orthodontics" class="nav-item" onclick="showSection('orthodontics')">矫正活动执行</a>
+            <!-- 活动一 -->
+            <div class="nav-group" id="group-activity1">
+                <div class="nav-group-header" onclick="toggleGroup('group-activity1')">
+                    <span>活动一：免费引流体系</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="nav-group-items">
+                    <a class="nav-item" onclick="showSection('free-traffic')">免费引流活动</a>
+                    <a class="nav-item" onclick="showSection('family-package')">家庭套餐活动</a>
+                    <a class="nav-item" onclick="showSection('referral')">裂变推荐活动</a>
+                    <a class="nav-item" onclick="showSection('membership')">口腔管家卡</a>
+                </div>
+            </div>
+
+            <!-- 活动二 -->
+            <div class="nav-group collapsed" id="group-activity2">
+                <div class="nav-group-header" onclick="toggleGroup('group-activity2')">
+                    <span>活动二：节日主题营销</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="nav-group-items">
+                    <a class="nav-item" onclick="showSection('festival-children')">儿童节主题活动</a>
+                    <a class="nav-item" onclick="showSection('festival-loveteeth')">爱牙日主题活动</a>
+                    <a class="nav-item" onclick="showSection('festival-holiday')">节日限时优惠</a>
+                </div>
+            </div>
+
+            <!-- 活动三 -->
+            <div class="nav-group collapsed" id="group-activity3">
+                <div class="nav-group-header" onclick="toggleGroup('group-activity3')">
+                    <span>活动三：会员深度运营</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="nav-group-items">
+                    <a class="nav-item" onclick="showSection('vip-level')">会员等级体系</a>
+                    <a class="nav-item" onclick="showSection('vip-points')">积分兑换活动</a>
+                    <a class="nav-item" onclick="showSection('vip-birthday')">生日专属特权</a>
+                </div>
+            </div>
+
+            <!-- 活动四 -->
+            <div class="nav-group collapsed" id="group-activity4">
+                <div class="nav-group-header" onclick="toggleGroup('group-activity4')">
+                    <span>活动四：渠道深度合作</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="nav-group-items">
+                    <a class="nav-item" onclick="showSection('channel-school')">学校合作方案</a>
+                    <a class="nav-item" onclick="showSection('channel-company')">企业团检方案</a>
+                    <a class="nav-item" onclick="showSection('channel-community')">社区定点服务</a>
+                </div>
+            </div>
         </div>
 
         <div class="nav-section">
             <div class="nav-section-title">运营工具</div>
-            <a href="#schedule" class="nav-item" onclick="showSection('schedule')">执行时间总表</a>
-            <a href="#tracking" class="nav-item" onclick="showSection('tracking')">数据追踪模板</a>
+            <a class="nav-item" onclick="showSection('schedule')">执行时间总表</a>
+            <a class="nav-item" onclick="showSection('tracking')">数据追踪模板</a>
         </div>
     </nav>
 
     <!-- 主内容区 -->
     <main class="main-content">
-        <!-- 设计思路 -->
+        <!-- ==================== 设计思路 ==================== -->
         <section id="overview" class="section active">
             <h2 class="section-title">设计思路</h2>
+            <p class="section-subtitle">四套低成本活动方案，适合4人小团队运营，月总预算控制在3000元以内</p>
 
             <div class="card">
                 <h3 class="card-title">项目背景</h3>
                 <div class="table-container">
                     <table>
                         <tr><th>项目</th><th>现状</th></tr>
+                        <tr><td>团队规模</td><td>4人小团队（1医+1护+2前台）</td></tr>
                         <tr><td>客户群体</td><td>家庭客户 + 中老年 + 学生</td></tr>
                         <tr><td>位置优势</td><td>住宅+学校+临街，客流潜力大</td></tr>
                         <tr><td>竞争态势</td><td>周边多家诊所，需差异化</td></tr>
-                        <tr><td>预算</td><td>3000元以下，主打免费/低成本</td></tr>
-                        <tr><td>现有渠道</td><td>私域流量 + 社区资源</td></tr>
+                        <tr><td>总预算</td><td>3000元/月以内</td></tr>
                     </table>
                 </div>
             </div>
 
             <div class="card">
-                <h3 class="card-title">整体架构</h3>
-                <p>把三大服务（补牙、镶牙、矫正）整合成一个<strong>"发现问题→解决问题→升级美丽"</strong>的完整路径：</p>
-                <div class="flow-diagram">
-                    <div class="flow-step">免费引流入口</div>
-                    <span class="flow-arrow">→</span>
-                    <div class="flow-step">家庭套餐 + 三大服务</div>
-                    <span class="flow-arrow">→</span>
-                    <div class="flow-step">裂变推荐</div>
-                    <span class="flow-arrow">→</span>
-                    <div class="flow-step">管家卡锁定复购</div>
-                </div>
-            </div>
-
-            <div class="card">
-                <h3 class="card-title">核心目标</h3>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <h3>最大化</h3>
-                        <p>进店人数</p>
-                    </div>
-                    <div class="stat-card orange">
-                        <h3>精准化</h3>
-                        <p>客户转化</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>激活</h3>
-                        <p>老客户复购</p>
-                    </div>
-                    <div class="stat-card orange">
-                        <h3>整合</h3>
-                        <p>不割裂服务</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <h3 class="card-title">月度成本估算</h3>
+                <h3 class="card-title">四套方案对比</h3>
                 <div class="table-container">
                     <table>
-                        <tr><th>项目</th><th>成本</th></tr>
-                        <tr><td>免费检查（40人×30元）</td><td>1200元</td></tr>
-                        <tr><td>儿童涂氟（30人×20元）</td><td>600元</td></tr>
-                        <tr><td>老人义诊（2场×100元）</td><td>200元</td></tr>
-                        <tr><td>裂变储值赠送</td><td>0（锁定资金）</td></tr>
-                        <tr><td><strong>总计</strong></td><td><strong>约2000元/月</strong></td></tr>
+                        <tr><th>方案</th><th>核心策略</th><th>适合场景</th><th>月预算</th><th>人力投入</th></tr>
+                        <tr>
+                            <td><span class="tag tag-hot">活动一</span></td>
+                            <td>免费引流 → 转化成交</td>
+                            <td>日常常态化运营</td>
+                            <td>~1500元</td>
+                            <td>每天1-2小时</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag tag-new">活动二</span></td>
+                            <td>节日热点借势营销</td>
+                            <td>6月儿童节、9月爱牙日</td>
+                            <td>~500元/次</td>
+                            <td>节日前1周筹备</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag tag-low">活动三</span></td>
+                            <td>会员体系提升复购</td>
+                            <td>老客户维护</td>
+                            <td>~300元/月</td>
+                            <td>每周维护1次</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag tag-discount">活动四</span></td>
+                            <td>渠道批量获客</td>
+                            <td>学校/企业/社区合作</td>
+                            <td>~500元/月</td>
+                            <td>每周拜访1-2次</td>
+                        </tr>
                     </table>
                 </div>
-                <p><span class="tag tag-free">符合3000元以下预算要求</span></p>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">执行建议</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>日常</h3>
+                        <p>活动一</p>
+                    </div>
+                    <div class="stat-card orange">
+                        <h3>节日</h3>
+                        <p>活动二</p>
+                    </div>
+                    <div class="stat-card green">
+                        <h3>每周</h3>
+                        <p>活动三</p>
+                    </div>
+                    <div class="stat-card purple">
+                        <h3>每周</h3>
+                        <p>活动四</p>
+                    </div>
+                </div>
+                <ul>
+                    <li><strong>建议组合：</strong>日常主打活动一，节日前2周启动活动二，每周维护活动三，每两周推进活动四</li>
+                    <li><strong>人力分配：</strong>前台负责活动一/三，店长负责活动二/四，医生配合技术支持</li>
+                    <li><strong>预算分配：</strong>活动一 50%、活动二 20%、活动三 10%、活动四 20%</li>
+                </ul>
             </div>
         </section>
 
-        <!-- 免费引流活动 -->
+        <!-- ==================== 活动一：免费引流活动 ==================== -->
         <section id="free-traffic" class="section">
             <h2 class="section-title">免费引流活动</h2>
+            <p class="section-subtitle">活动一：免费引流体系 · 预算约800元/月</p>
 
             <div class="card">
                 <h3 class="card-title">活动概览</h3>
@@ -739,10 +759,10 @@
                 <div class="table-container">
                     <table>
                         <tr><th>步骤</th><th>动作</th><th>负责人</th><th>话术/备注</th></tr>
-                        <tr><td>1</td><td>朋友圈/社群发布活动海报</td><td>前台/店长</td><td>见下方海报文案</td></tr>
+                        <tr><td>1</td><td>朋友圈/社群发布活动海报</td><td>前台</td><td>每周一上午发布</td></tr>
                         <tr><td>2</td><td>客户预约或到店</td><td>前台</td><td>登记姓名+电话+来源渠道</td></tr>
                         <tr><td>3</td><td>引导至诊室检查</td><td>护士</td><td>"您好，请这边坐，医生马上给您做检查"</td></tr>
-                        <tr><td>4</td><td>医生检查+拍片</td><td>医生</td><td>发现问题要记录在检查单上</td></tr>
+                        <tr><td>4</td><td>医生检查+拍片</td><td>医生</td><td>发现问题记录在检查单上</td></tr>
                         <tr><td>5</td><td>医生口头告知问题</td><td>医生</td><td>"您这边有xx问题，建议..."</td></tr>
                         <tr><td>6</td><td>前台跟进转化</td><td>前台</td><td>"医生说您这个问题需要处理，现在有活动..."</td></tr>
                     </table>
@@ -753,13 +773,13 @@
                 <h3 class="card-title">物料准备清单</h3>
                 <div class="table-container">
                     <table>
-                        <tr><th>物料</th><th>数量</th><th>用途</th></tr>
-                        <tr><td>活动海报</td><td>1张</td><td>微信群/朋友圈转发</td></tr>
-                        <tr><td>检查登记表</td><td>50份/月</td><td>记录客户信息和检查结果</td></tr>
-                        <tr><td>口腔健康档案袋</td><td>50个</td><td>存放拍片，增加专业感</td></tr>
-                        <tr><td>检查结果告知单</td><td>50份</td><td>客户带走，方便后续跟进</td></tr>
+                        <tr><th>物料</th><th>数量</th><th>成本</th><th>用途</th></tr>
+                        <tr><td>活动海报（电子版）</td><td>1张</td><td>0元</td><td>微信群/朋友圈转发</td></tr>
+                        <tr><td>检查登记表</td><td>50份/月</td><td>10元</td><td>记录客户信息</td></tr>
+                        <tr><td>口腔健康档案袋</td><td>50个</td><td>25元</td><td>存放拍片，增加专业感</td></tr>
                     </table>
                 </div>
+                <p><span class="cost-tag">💰 月成本：约35元</span></p>
             </div>
 
             <div class="card">
@@ -775,117 +795,44 @@
                 </div>
             </div>
 
-            <div class="card">
-                <h3 class="card-title">执行时间安排</h3>
-                <div class="table-container">
-                    <table>
-                        <tr><th>时间</th><th>动作</th></tr>
-                        <tr><td>每周一上午</td><td>发布本周活动海报到朋友圈</td></tr>
-                        <tr><td>每天9:00-11:00</td><td>预留检查时段，避免与付费客户冲突</td></tr>
-                        <tr><td>每天17:00</td><td>整理当日检查客户名单，标记需跟进对象</td></tr>
-                        <tr><td>每周日晚上</td><td>统计本周数据，调整下周安排</td></tr>
-                    </table>
-                </div>
-            </div>
-
             <div class="highlight-box">
                 <h4>⚠️ 注意事项</h4>
                 <p>1. 检查必须认真做，不能敷衍，这是建立信任的关键</p>
                 <p>2. 发现问题要当场告知，并预约下次治疗时间</p>
                 <p>3. 当天没成交的客户，3天后电话回访</p>
             </div>
-
-            <div class="card">
-                <h3 class="card-title">儿童免费涂氟执行流程</h3>
-                <div class="table-container">
-                    <table>
-                        <tr><th>步骤</th><th>动作</th><th>负责人</th></tr>
-                        <tr><td>1</td><td>联系周边学校/幼儿园/培训机构</td><td>店长</td></tr>
-                        <tr><td>2</td><td>制作涂氟活动海报</td><td>店长</td></tr>
-                        <tr><td>3</td><td>社群/朋友圈发布</td><td>前台</td></tr>
-                        <tr><td>4</td><td>家长带孩子到店</td><td>前台登记</td></tr>
-                        <tr><td>5</td><td>医生涂氟操作</td><td>医生</td></tr>
-                        <tr><td>6</td><td>告知家长孩子口腔情况</td><td>医生</td></tr>
-                        <tr><td>7</td><td>推荐家长也做检查</td><td>前台</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <div class="card">
-                <h3 class="card-title">合作渠道拓展</h3>
-                <div class="table-container">
-                    <table>
-                        <tr><th>渠道</th><th>联系对象</th><th>合作话术</th></tr>
-                        <tr><td>周边幼儿园</td><td>园长/保健医</td><td>"我们提供免费涂氟公益服务，可以组织家长报名"</td></tr>
-                        <tr><td>培训机构</td><td>负责人</td><td>"合作举办口腔健康小课堂，免费涂氟名额"</td></tr>
-                        <tr><td>社区物业</td><td>物业经理</td><td>"在业主群发活动通知，给小区孩子提供福利"</td></tr>
-                        <tr><td>学校家长群</td><td>家委会</td><td>"组织班级团购涂氟活动"</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <div class="card">
-                <h3 class="card-title">老人义诊日执行流程</h3>
-                <div class="table-container">
-                    <table>
-                        <tr><th>步骤</th><th>动作</th><th>负责人</th></tr>
-                        <tr><td>1</td><td>社区物业/老年活动中心联系</td><td>店长</td></tr>
-                        <tr><td>2</td><td>准备义诊物料</td><td>前台</td></tr>
-                        <tr><td>3</td><td>活动当天布置场地</td><td>全员</td></tr>
-                        <tr><td>4</td><td>义诊+健康讲座</td><td>医生</td></tr>
-                        <tr><td>5</td><td>发放小礼品</td><td>前台</td></tr>
-                        <tr><td>6</td><td>登记客户信息</td><td>前台</td></tr>
-                        <tr><td>7</td><td>后续电话跟进</td><td>前台</td></tr>
-                    </table>
-                </div>
-                <h4 class="card-subtitle">社区合作话术</h4>
-                <div class="quote-box">
-                    <p>您好，我们是xxx口腔诊所，想在咱们小区办一个老人免费义诊活动，提供免费口腔检查、血压测量、健康讲座，还会送一些小礼品给老人。您看方便安排一下场地吗？我们这个月15号想举办，大概需要2个小时。</p>
-                </div>
-            </div>
         </section>
 
-        <!-- 家庭套餐活动 -->
+        <!-- ==================== 活动一：家庭套餐活动 ==================== -->
         <section id="family-package" class="section">
             <h2 class="section-title">家庭套餐活动</h2>
+            <p class="section-subtitle">活动一：免费引流体系 · 一人进店全家转化</p>
 
             <div class="card">
                 <h3 class="card-title">家庭套餐设计</h3>
                 <div class="table-container">
                     <table>
-                        <tr><th>套餐</th><th>内容</th><th>价格</th><th>原价</th><th>适合人群</th></tr>
+                        <tr><th>套餐</th><th>内容</th><th>价格</th><th>原价</th></tr>
                         <tr>
                             <td><span class="tag tag-discount">推荐</span>家庭关怀卡</td>
                             <td>2人以上绑定，每人享8折</td>
                             <td>充值即享</td>
                             <td>-</td>
-                            <td>家庭客户</td>
                         </tr>
                         <tr>
                             <td><span class="tag tag-hot">热门</span>家庭年卡</td>
                             <td>3人免费检查+每人1次洗牙+全家8折</td>
                             <td>999元</td>
                             <td>1500元+</td>
-                            <td>多口之家</td>
                         </tr>
                         <tr>
                             <td>亲子护牙卡</td>
                             <td>成人洗牙+儿童涂氟+两人检查</td>
                             <td>199元</td>
                             <td>400元</td>
-                            <td>家长+孩子</td>
                         </tr>
                     </table>
                 </div>
-            </div>
-
-            <div class="card">
-                <h3 class="card-title">家庭套餐核心逻辑</h3>
-                <ul>
-                    <li><strong>一人进店</strong> → 推荐带家人一起检查 → 多人绑定享优惠</li>
-                    <li><strong>孩子涂氟</strong> → 发现家长牙齿问题 → 顺便转化成人</li>
-                    <li><strong>老人义诊</strong> → 发现子女也需要检查 → 家庭套餐切入</li>
-                </ul>
             </div>
 
             <div class="card">
@@ -896,31 +843,15 @@
                         <tr><td>单人进店检查</td><td>"您家人也做过口腔检查吗？可以一起带来检查，我们家庭套餐更优惠"</td></tr>
                         <tr><td>孩子涂氟时</td><td>"家长也可以顺便检查一下，办个家庭卡更划算"</td></tr>
                         <tr><td>老人义诊后</td><td>"您可以带老伴一起来，两人办卡享8折"</td></tr>
-                        <tr><td>任何客户结账时</td><td>"推荐您办理家庭口腔卡，绑定2人以上就享8折"</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <div class="card">
-                <h3 class="card-title">办理流程</h3>
-                <div class="table-container">
-                    <table>
-                        <tr><th>步骤</th><th>动作</th><th>负责人</th></tr>
-                        <tr><td>1</td><td>客户表达意向</td><td>前台介绍套餐内容</td></tr>
-                        <tr><td>2</td><td>确认办理人数和套餐类型</td><td>前台</td></tr>
-                        <tr><td>3</td><td>登记家庭成员信息</td><td>前台</td></tr>
-                        <tr><td>4</td><td>收款并开具收据</td><td>前台</td></tr>
-                        <tr><td>5</td><td>发放家庭口腔卡</td><td>前台</td></tr>
-                        <tr><td>6</td><td>建立家庭档案</td><td>前台/护士</td></tr>
-                        <tr><td>7</td><td>预约首次服务时间</td><td>前台</td></tr>
                     </table>
                 </div>
             </div>
         </section>
 
-        <!-- 裂变推荐活动 -->
+        <!-- ==================== 活动一：裂变推荐活动 ==================== -->
         <section id="referral" class="section">
             <h2 class="section-title">裂变推荐活动</h2>
+            <p class="section-subtitle">活动一：免费引流体系 · 老带新低成本获客</p>
 
             <div class="card">
                 <h3 class="card-title">裂变激励规则</h3>
@@ -947,175 +878,606 @@
                         </tr>
                     </table>
                 </div>
+                <p><span class="cost-tag">💰 成本分析：储值是预收现金，实际成本为0</span></p>
             </div>
 
             <div class="card">
                 <h3 class="card-title">裂变植入时机</h3>
-                <div class="table-container">
-                    <table>
-                        <tr><th>场景</th><th>话术</th></tr>
-                        <tr><td>客户服务满意时</td><td>"您今天体验还满意吗？如果觉得不错，可以推荐朋友家人一起来，双方都能得50元储值。"</td></tr>
-                        <tr><td>客户办卡时</td><td>"这张卡您自己用，也可以推荐朋友来消费，推荐成功双方都有50元。"</td></tr>
-                        <tr><td>客户结账时</td><td>"对了，如果您推荐朋友来，记得让他们报您的电话，这样双方都有福利。"</td></tr>
-                        <tr><td>回访电话时</td><td>"您好，我是xxx口腔诊所的小王，上次的治疗您还满意吗？如果觉得不错，可以推荐朋友家人来检查，双方都有50元储值哦。"</td></tr>
-                    </table>
+                <div class="quote-box">
+                    <p><strong>客户服务满意时：</strong>"您今天体验还满意吗？如果觉得不错，可以推荐朋友家人一起来，双方都能得50元储值。"</p>
                 </div>
-            </div>
-
-            <div class="card">
-                <h3 class="card-title">裂变跟进流程</h3>
-                <div class="table-container">
-                    <table>
-                        <tr><th>步骤</th><th>动作</th><th>负责人</th></tr>
-                        <tr><td>1</td><td>老客户推荐新客户到店</td><td>新客户报老客户电话</td></tr>
-                        <tr><td>2</td><td>前台登记推荐关系</td><td>前台在系统中记录</td></tr>
-                        <tr><td>3</td><td>新客户首次消费</td><td>确认推荐关系有效</td></tr>
-                        <tr><td>4</td><td>储值到账</td><td>前台操作，通知双方</td></tr>
-                        <tr><td>5</td><td>达到奖励标准时</td><td>发送额外奖励（洗牙/大使资格）</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <div class="card">
-                <h3 class="card-title">家庭裂变叠加设计</h3>
-                <div class="table-container">
-                    <table>
-                        <tr><th>裂变场景</th><th>推荐人奖励</th><th>新客户福利</th></tr>
-                        <tr><td>推荐另一个家庭办理家庭年卡</td><td>100元储值</td><td>100元储值</td></tr>
-                        <tr><td>推荐老人来做镶牙检查</td><td>双方各得100元镶牙抵用券</td><td>-</td></tr>
-                        <tr><td>推荐学生做矫正咨询</td><td>双方各得矫正500元抵用券</td><td>-</td></tr>
-                    </table>
+                <div class="quote-box">
+                    <p><strong>客户结账时：</strong>"对了，如果您推荐朋友来，记得让他们报您的电话，这样双方都有福利。"</p>
                 </div>
             </div>
         </section>
 
-        <!-- 口腔管家卡 -->
+        <!-- ==================== 活动一：口腔管家卡 ==================== -->
         <section id="membership" class="section">
             <h2 class="section-title">口腔管家卡</h2>
+            <p class="section-subtitle">活动一：免费引流体系 · 锁定客户复购</p>
 
             <div class="card">
                 <h3 class="card-title">储值卡类型</h3>
                 <div class="table-container">
                     <table>
-                        <tr><th>面额</th><th>赠送</th><th>适合客户</th><th>锁定逻辑</th></tr>
-                        <tr>
-                            <td>500元</td>
-                            <td>送50元</td>
-                            <td>补牙客户</td>
-                            <td>单次消费，锁定下次</td>
-                        </tr>
-                        <tr>
-                            <td>1000元</td>
-                            <td>送150元</td>
-                            <td>镶牙客户</td>
-                            <td>多次复诊，锁定全程</td>
-                        </tr>
-                        <tr>
-                            <td><span class="tag tag-hot">超值</span>3000元</td>
-                            <td>送500元+免费洗牙2次</td>
-                            <td>矫正客户</td>
-                            <td>长期治疗，锁定全周期</td>
-                        </tr>
+                        <tr><th>面额</th><th>赠送</th><th>适合客户</th></tr>
+                        <tr><td>500元</td><td>送50元</td><td>补牙客户</td></tr>
+                        <tr><td>1000元</td><td>送150元</td><td>镶牙客户</td></tr>
+                        <tr><td><span class="tag tag-hot">超值</span>3000元</td><td>送500元+免费洗牙2次</td><td>矫正客户</td></tr>
                     </table>
                 </div>
             </div>
 
             <div class="card">
                 <h3 class="card-title">介绍话术</h3>
-                <h4 class="card-subtitle">场景一：补牙后</h4>
                 <div class="quote-box">
-                    <p>"您的牙齿都处理好了。对了，您可以办一张我们的口腔管家卡，充值500送50，以后来看牙直接刷卡就行，不用每次付现金，还能锁定优惠价格。"</p>
+                    <p><strong>补牙后：</strong>"您的牙齿都处理好了。对了，您可以办一张我们的口腔管家卡，充值500送50，以后来看牙直接刷卡就行，还能锁定优惠价格。"</p>
                 </div>
-                <h4 class="card-subtitle">场景二：镶牙后</h4>
                 <div class="quote-box">
-                    <p>"镶牙后面还需要来复查几次，建议您办一张管家卡，充值1000送150，复诊直接刷卡，比每次付现金划算多了。"</p>
-                </div>
-                <h4 class="card-subtitle">场景三：矫正后</h4>
-                <div class="quote-box">
-                    <p>"矫正治疗周期比较长，您可以办一张3000元的管家卡，送500元还送2次免费洗牙，整个治疗过程直接刷卡，非常方便。"</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <h3 class="card-title">使用规则</h3>
-                <div class="table-container">
-                    <table>
-                        <tr><th>规则</th><th>说明</th></tr>
-                        <tr><td>使用范围</td><td>本店所有服务</td></tr>
-                        <tr><td>有效期</td><td>永久有效</td></tr>
-                        <tr><td>退款规则</td><td>未使用可全额退款，已使用按原价扣除</td></tr>
-                        <tr><td>转让规则</td><td>可转让给家人朋友</td></tr>
-                        <tr><td>叠加优惠</td><td>可与活动优惠叠加使用</td></tr>
-                    </table>
+                    <p><strong>镶牙后：</strong>"镶牙后面还需要来复查几次，建议您办一张管家卡，充值1000送150，复诊直接刷卡，比每次付现金划算多了。"</p>
                 </div>
             </div>
         </section>
 
-        <!-- 补牙活动执行 -->
-        <section id="filling-tooth" class="section">
-            <h2 class="section-title">补牙活动执行手册</h2>
+        <!-- ==================== 活动二：儿童节主题活动 ==================== -->
+        <section id="festival-children" class="section">
+            <h2 class="section-title">儿童节主题活动</h2>
+            <p class="section-subtitle">活动二：节日主题营销 · 6月1日前后2周 · 预算300元</p>
+
+            <div class="card">
+                <h3 class="card-title">活动设计思路</h3>
+                <p>儿童节是牙科诊所黄金营销节点，家长关注孩子牙齿健康，转化率高。核心策略：<strong>孩子免费体验 + 家长连带检查</strong></p>
+            </div>
 
             <div class="card">
                 <h3 class="card-title">活动内容</h3>
-                <div class="highlight-box">
-                    <h4>🎁 补牙优惠</h4>
-                    <p>首颗补牙 <strong>99元</strong>（原价200+）</p>
-                    <p>第二颗起享 <strong>8折</strong></p>
-                    <p>家庭卡再享 <strong>8折</strong>（相当于64折）</p>
+                <div class="highlight-box green">
+                    <h4>🎈 六一儿童节护牙行动</h4>
+                    <p>活动时间：5月25日 - 6月10日</p>
+                    <p>✅ 儿童免费涂氟（6-12岁）</p>
+                    <p>✅ 儿童免费口腔检查+拍片</p>
+                    <p>✅ 家长陪同检查享5折优惠</p>
+                    <p>✅ 赠送儿童牙刷+贴纸套装</p>
+                </div>
+                <p><span class="cost-tag">💰 总预算：约300元（小礼品200元+海报打印100元）</span></p>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">执行流程</h3>
+                <div class="table-container">
+                    <table>
+                        <tr><th>时间</th><th>动作</th><th>负责人</th></tr>
+                        <tr><td>5月20日</td><td>设计活动海报、准备小礼品</td><td>店长</td></tr>
+                        <tr><td>5月21-24日</td><td>联系周边学校、幼儿园、培训机构</td><td>店长</td></tr>
+                        <tr><td>5月25日</td><td>朋友圈、社群发布活动海报</td><td>前台</td></tr>
+                        <tr><td>5月25日-6月10日</td><td>活动执行、登记客户信息</td><td>全员</td></tr>
+                        <tr><td>6月11-15日</td><td>电话回访未成交客户</td><td>前台</td></tr>
+                    </table>
                 </div>
             </div>
 
             <div class="card">
-                <h3 class="card-title">销售话术</h3>
+                <h3 class="card-title">合作渠道拓展</h3>
+                <div class="table-container">
+                    <table>
+                        <tr><th>渠道</th><th>合作方式</th><th>话术</th></tr>
+                        <tr><td>周边幼儿园</td><td>提供免费涂氟服务</td><td>"六一儿童节，我们想给孩子送份健康礼物"</td></tr>
+                        <tr><td>培训机构</td><td>家长群发活动海报</td><td>"合作举办护牙小课堂，送孩子免费涂氟"</td></tr>
+                        <tr><td>学校家长群</td><td>家长帮忙转发</td><td>"六一福利，孩子免费涂氟+检查"</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">小礼品采购建议</h3>
+                <div class="table-container">
+                    <table>
+                        <tr><th>礼品</th><th>成本</th><th>数量</th><th>总成本</th></tr>
+                        <tr><td>儿童牙刷（批发）</td><td>3元/支</td><td>50支</td><td>150元</td></tr>
+                        <tr><td>卡通贴纸</td><td>1元/张</td><td>50张</td><td>50元</td></tr>
+                    </table>
+                </div>
+                <p><span class="cost-tag">💰 采购成本：200元（淘宝批发即可）</span></p>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">朋友圈文案</h3>
                 <div class="quote-box">
-                    <p><strong>医生检查后：</strong>"您这颗牙齿需要补一下，不然会越蛀越深。我们最近有活动，首颗补牙只要99元，原价要200多呢。您看要不要今天就处理了？"</p>
+                    <p>🎈【六一儿童节福利】送孩子一份健康礼物！</p>
+                    <p>👶 6-12岁儿童免费涂氟</p>
+                    <p>🦷 免费口腔检查+拍片</p>
+                    <p>👨‍👩‍👧 家长陪同检查享5折优惠</p>
+                    <p>🎁 赠送儿童牙刷+贴纸套装</p>
+                    <p>📅 活动时间：5月25日-6月10日</p>
+                    <p>📍 地址：xxx</p>
+                    <p>名额有限，预约从速！让孩子从小拥有一口好牙~</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">转化话术</h3>
+                <div class="quote-box">
+                    <p><strong>涂氟后告知家长：</strong>"孩子的牙齿整体不错，但有几颗牙齿有早期蛀牙迹象，建议尽早处理。刚好六一活动，儿童补牙8折，今天处理只要XX元。"</p>
                 </div>
                 <div class="quote-box">
-                    <p><strong>多颗蛀牙时：</strong>"您这里其实有3颗牙齿都有问题，建议一起处理。首颗99元，后面两颗按8折算，一共只要...元，比原价省了...元。"</p>
+                    <p><strong>引导家长检查：</strong>"家长也可以顺便检查一下，活动期间家长检查享5折，只要XX元，很多大人也有蛀牙问题没发现呢。"</p>
                 </div>
+            </div>
+
+            <div class="highlight-box">
+                <h4>📊 预期效果</h4>
+                <p>• 目标进店儿童：30-50人</p>
+                <p>• 预计转化补牙：5-10人</p>
+                <p>• 预计家长检查转化：10-15人</p>
+                <p>• 预计营收：2000-5000元</p>
+            </div>
+        </section>
+
+        <!-- ==================== 活动二：爱牙日主题活动 ==================== -->
+        <section id="festival-loveteeth" class="section">
+            <h2 class="section-title">爱牙日主题活动</h2>
+            <p class="section-subtitle">活动二：节日主题营销 · 9月20日前后2周 · 预算200元</p>
+
+            <div class="card">
+                <h3 class="card-title">活动设计思路</h3>
+                <p>9月20日是全国爱牙日，是牙科行业官方节日，媒体关注度高。核心策略：<strong>公益义诊 + 社区科普</strong></p>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">活动内容</h3>
+                <div class="highlight-box">
+                    <h4>🦷 9·20爱牙日公益行动</h4>
+                    <p>活动时间：9月15日 - 9月25日</p>
+                    <p>✅ 全民免费口腔检查</p>
+                    <p>✅ 社区义诊日（测血压+口腔检查）</p>
+                    <p>✅ 爱牙科普小课堂</p>
+                    <p>✅ 洗牙体验价99元（原价200元）</p>
+                </div>
+                <p><span class="cost-tag">💰 总预算：约200元（义诊物料+横幅）</span></p>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">执行流程</h3>
+                <div class="table-container">
+                    <table>
+                        <tr><th>时间</th><th>动作</th><th>负责人</th></tr>
+                        <tr><td>9月10日</td><td>联系社区物业申请义诊场地</td><td>店长</td></tr>
+                        <tr><td>9月11-14日</td><td>准备义诊物料、科普资料</td><td>前台</td></tr>
+                        <tr><td>9月15日</td><td>朋友圈发布活动海报</td><td>前台</td></tr>
+                        <tr><td>9月18日</td><td>社区义诊日</td><td>全员</td></tr>
+                        <tr><td>9月15-25日</td><td>店内活动执行</td><td>全员</td></tr>
+                        <tr><td>9月26-30日</td><td>电话回访意向客户</td><td>前台</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">社区义诊物料清单</h3>
+                <div class="table-container">
+                    <table>
+                        <tr><th>物料</th><th>成本</th><th>备注</th></tr>
+                        <tr><td>横幅（爱牙日主题）</td><td>50元</td><td>淘宝定制</td></tr>
+                        <tr><td>宣传单页</td><td>50元</td><td>打印店打印</td></tr>
+                        <tr><td>血压计</td><td>0元</td><td>借用或已有</td></tr>
+                        <tr><td>一次性口罩手套</td><td>50元</td><td>诊所常备</td></tr>
+                        <tr><td>登记表+笔</td><td>20元</td><td>记录客户信息</td></tr>
+                    </table>
+                </div>
+                <p><span class="cost-tag">💰 义诊物料成本：约170元</span></p>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">社区合作话术</h3>
                 <div class="quote-box">
-                    <p><strong>办家庭卡后：</strong>"如果您办了家庭卡，这个8折还能再叠加，相当于64折了，更划算！"</p>
+                    <p>您好，我们是xxx口腔诊所。9月20日是全国爱牙日，我们想在咱们小区办一个公益义诊活动，免费给居民做口腔检查、测血压，还有爱牙科普小课堂。您看方便安排一下场地吗？大概需要2-3个小时。</p>
                 </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">朋友圈文案</h3>
+                <div class="quote-box">
+                    <p>🦷【9·20全国爱牙日】守护您的口腔健康！</p>
+                    <p>📅 9月15日-25日爱牙日特别活动</p>
+                    <p>✅ 全民免费口腔检查</p>
+                    <p>🏥 社区义诊：测血压+口腔检查</p>
+                    <p>🎓 爱牙科普小课堂</p>
+                    <p>💎 洗牙体验价99元（原价200元）</p>
+                    <p>📍 义诊地点：xxx小区广场</p>
+                    <p>爱牙日，让我们从"齿"开始！</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 活动二：节日限时优惠 ==================== -->
+        <section id="festival-holiday" class="section">
+            <h2 class="section-title">节日限时优惠</h2>
+            <p class="section-subtitle">活动二：节日主题营销 · 春节/国庆/中秋 · 预算200元/次</p>
+
+            <div class="card">
+                <h3 class="card-title">活动设计思路</h3>
+                <p>利用节假日消费心理，推出限时优惠活动。核心策略：<strong>节日氛围包装 + 限时优惠刺激决策</strong></p>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">全年节日营销日历</h3>
+                <div class="table-container">
+                    <table>
+                        <tr><th>节日</th><th>活动主题</th><th>优惠内容</th><th>目标人群</th></tr>
+                        <tr><td>春节（1-2月）</td><td>新年好牙口</td><td>洗牙8折+补牙9折</td><td>返乡人群</td></tr>
+                        <tr><td>五一（5月）</td><td>劳动节护牙</td><td>镶牙设计免费</td><td>中老年</td></tr>
+                        <tr><td>中秋/国庆（9-10月）</td><td>团圆好牙口</td><td>矫正咨询免费+小礼品</td><td>年轻人</td></tr>
+                        <tr><td>双十一（11月）</td><td>爱牙狂欢节</td><td>储值充500送80</td><td>老客户</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">春节活动方案（示例）</h3>
+                <div class="highlight-box orange">
+                    <h4>🧧 新年好牙口活动</h4>
+                    <p>活动时间：腊月二十 - 正月十五</p>
+                    <p>✅ 洗牙体验价88元（原价200元）</p>
+                    <p>✅ 补牙首颗99元</p>
+                    <p>✅ 新年老客户回店送小礼品</p>
+                </div>
+                <p><span class="cost-tag">💰 总预算：约200元（红包+小礼品）</span></p>
             </div>
 
             <div class="card">
                 <h3 class="card-title">执行要点</h3>
-                <div class="table-container">
-                    <table>
-                        <tr><th>要点</th><th>说明</th></tr>
-                        <tr><td>检查时发现蛀牙要当场指出</td><td>让客户看镜子或拍片</td></tr>
-                        <tr><td>说明不处理的后果</td><td>"越蛀越深，到时候要根管治疗就贵多了"</td></tr>
-                        <tr><td>报价时对比原价</td><td>"原价200多，现在只要99元"</td></tr>
-                        <tr><td>询问是否今天处理</td><td>促成即时成交</td></tr>
-                    </table>
+                <ul>
+                    <li>节日前1周开始预热，朋友圈每天发1条</li>
+                    <li>制作节日主题海报（可用免费设计工具）</li>
+                    <li>老客户短信/微信通知活动信息</li>
+                    <li>活动期间每天统计进店人数和成交情况</li>
+                    <li>活动结束后回访未成交意向客户</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">节日朋友圈文案模板</h3>
+                <div class="quote-box">
+                    <p>🧧【新年好牙口】春节期间看牙优惠多！</p>
+                    <p>🦷 洗牙体验价88元（原价200元）</p>
+                    <p>✨ 补牙首颗99元</p>
+                    <p>🎁 新年老客户回店送精美小礼品</p>
+                    <p>📅 活动时间：腊月二十 - 正月十五</p>
+                    <p>📍 地址：xxx</p>
+                    <p>新的一年，从一口好牙开始！</p>
                 </div>
             </div>
         </section>
 
-        <!-- 镶牙活动执行 -->
-        <section id="denture" class="section">
-            <h2 class="section-title">镶牙活动执行手册</h2>
+        <!-- ==================== 活动三：会员等级体系 ==================== -->
+        <section id="vip-level" class="section">
+            <h2 class="section-title">会员等级体系</h2>
+            <p class="section-subtitle">活动三：会员深度运营 · 提升客户忠诚度 · 预算0元</p>
 
             <div class="card">
-                <h3 class="card-title">活动内容</h3>
-                <div class="highlight-box">
-                    <h4>🎁 镶牙优惠</h4>
-                    <p>方案设计 <strong>免费</strong>（原价300元）</p>
-                    <p>首次取模 <strong>免费</strong>（原价200元）</p>
-                    <p>合计价值 <strong>500元</strong></p>
+                <h3 class="card-title">活动设计思路</h3>
+                <p>会员等级体系让客户有成长感，激励持续消费。核心策略：<strong>消费累计升级 + 等级专属权益</strong></p>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">会员等级设计</h3>
+                <div class="table-container">
+                    <table>
+                        <tr><th>等级</th><th>累计消费</th><th>专属权益</th></tr>
+                        <tr>
+                            <td><span class="tag">普通会员</span></td>
+                            <td>0-999元</td>
+                            <td>生日当月8折优惠</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag tag-discount">银卡会员</span></td>
+                            <td>1000-2999元</td>
+                            <td>全年8.5折 + 免费洗牙1次/年</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag tag-hot">金卡会员</span></td>
+                            <td>3000-4999元</td>
+                            <td>全年8折 + 免费洗牙2次/年 + 优先预约</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag tag-free">钻石会员</span></td>
+                            <td>5000元以上</td>
+                            <td>全年7.5折 + 免费洗牙3次/年 + 专属客服</td>
+                        </tr>
+                    </table>
+                </div>
+                <p><span class="cost-tag">💰 成本分析：折扣成本极低，洗牙是自有服务</span></p>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">会员权益说明</h3>
+                <div class="highlight-box purple">
+                    <h4>💎 会员专属权益</h4>
+                    <p>✅ 消费自动累计，系统自动升级</p>
+                    <p>✅ 等级权益长期有效，不设有效期</p>
+                    <p>✅ 所有优惠可与活动叠加使用</p>
+                    <p>✅ 推荐新客户可额外获得积分</p>
                 </div>
             </div>
 
             <div class="card">
-                <h3 class="card-title">销售话术</h3>
+                <h3 class="card-title">话术引导</h3>
                 <div class="quote-box">
-                    <p><strong>医生检查后：</strong>"您这颗牙缺失有一段时间了，建议尽早镶上，不然两边牙齿会倒，对咬牙也会伸长。"</p>
+                    <p><strong>结账时告知：</strong>"您现在的累计消费已经XX元了，再消费XX元就能升级到银卡会员，全年8.5折，还有免费洗牙1次。要不要今天一起把XX处理了？"</p>
                 </div>
                 <div class="quote-box">
-                    <p><strong>前台跟进：</strong>"镶牙方案设计我们现在是免费的，原来要收300元设计费，这次活动全免了。您先做一个方案看看，合适就做，不合适也不花钱。"</p>
+                    <p><strong>推荐办卡时：</strong>"您可以办一张储值卡，直接升级到银卡会员，以后看牙都能打折，还有免费洗牙送。"</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 活动三：积分兑换活动 ==================== -->
+        <section id="vip-points" class="section">
+            <h2 class="section-title">积分兑换活动</h2>
+            <p class="section-subtitle">活动三：会员深度运营 · 增加消费粘性 · 预算100元/月</p>
+
+            <div class="card">
+                <h3 class="card-title">活动设计思路</h3>
+                <p>积分让客户有"赚到了"的感觉，激励多次消费。核心策略：<strong>消费赚积分 + 积分换服务</strong></p>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">积分规则</h3>
+                <div class="table-container">
+                    <table>
+                        <tr><th>行为</th><th>积分</th><th>备注</th></tr>
+                        <tr><td>消费1元</td><td>积1分</td><td>储值消费同样计积分</td></tr>
+                        <tr><td>推荐新客户成交</td><td>积100分</td><td>新客户首次消费后到账</td></tr>
+                        <tr><td>生日当月消费</td><td>双倍积分</td><td>自动翻倍</td></tr>
+                        <tr><td>朋友圈分享活动</td><td>积10分</td><td>截图给前台登记</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">积分兑换表</h3>
+                <div class="table-container">
+                    <table>
+                        <tr><th>积分</th><th>可兑换</th><th>价值</th></tr>
+                        <tr><td>100分</td><td>儿童涂氟1次</td><td>约30元</td></tr>
+                        <tr><td>200分</td><td>口腔检查+拍片1次</td><td>约50元</td></tr>
+                        <tr><td>500分</td><td>洗牙1次</td><td>约100元</td></tr>
+                        <tr><td>1000分</td><td>补牙抵用券100元</td><td>100元</td></tr>
+                        <tr><td>2000分</td><td>储值卡100元</td><td>100元</td></tr>
+                    </table>
+                </div>
+                <p><span class="cost-tag">💰 成本分析：积分兑换的是自有服务，边际成本极低</span></p>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">积分提醒话术</h3>
+                <div class="quote-box">
+                    <p><strong>结账时：</strong>"您现在有XX积分了，再积XX分就能兑换一次洗牙了。"</p>
                 </div>
                 <div class="quote-box">
-                    <p><strong>取模时：</strong>"今天取模也是免费的，您先看看方案效果，满意了再决定。"</p>
+                    <p><strong>月底提醒：</strong>"您好，您本月新增了XX积分，现在累计XX积分了，可以兑换XX服务哦~"</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 活动三：生日专属特权 ==================== -->
+        <section id="vip-birthday" class="section">
+            <h2 class="section-title">生日专属特权</h2>
+            <p class="section-subtitle">活动三：会员深度运营 · 增强情感连接 · 预算150元/月</p>
+
+            <div class="card">
+                <h3 class="card-title">活动设计思路</h3>
+                <p>生日关怀让客户感受到重视，增加品牌好感。核心策略：<strong>生日祝福 + 专属优惠 + 小礼品</strong></p>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">生日特权内容</h3>
+                <div class="highlight-box green">
+                    <h4>🎂 生日专属特权</h4>
+                    <p>✅ 生日当月看牙享5折优惠</p>
+                    <p>✅ 生日当天到店送小礼品</p>
+                    <p>✅ 消费双倍积分</p>
+                    <p>✅ 生日前一天短信祝福+优惠提醒</p>
+                </div>
+                <p><span class="cost-tag">💰 成本：每月约150元（小礼品采购）</span></p>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">执行流程</h3>
+                <div class="table-container">
+                    <table>
+                        <tr><th>时间</th><th>动作</th><th>负责人</th></tr>
+                        <tr><td>每月初</td><td>筛选当月生日客户名单</td><td>前台</td></tr>
+                        <tr><td>生日前3天</td><td>发送生日祝福短信+优惠提醒</td><td>前台</td></tr>
+                        <tr><td>生日当天</td><td>微信发送生日祝福</td><td>前台</td></tr>
+                        <tr><td>客户到店</td><td>告知生日特权+送小礼品</td><td>前台</td></tr>
+                        <tr><td>月底</td><td>统计生日客户到店率</td><td>前台</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">生日祝福话术</h3>
+                <div class="quote-box">
+                    <p><strong>短信模板：</strong>【xxx口腔】亲爱的客户，祝您生日快乐！🎂 为感谢您的支持，本月看牙享5折优惠，到店还有小礼品相送。预约电话：xxx</p>
+                </div>
+                <div class="quote-box">
+                    <p><strong>微信模板：</strong>亲爱的客户，今天是您的生日！🎂 祝您生日快乐，笑口常开！本月看牙享5折优惠，还有小礼品等您来拿哦~</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">小礼品建议</h3>
+                <div class="table-container">
+                    <table>
+                        <tr><th>礼品</th><th>成本</th><th>适合人群</th></tr>
+                        <tr><td>电动牙刷（批发）</td><td>15-20元</td><td>高消费客户</td></tr>
+                        <tr><td>牙线+牙刷套装</td><td>5-10元</td><td>普通客户</td></tr>
+                        <tr><td>口腔护理小礼包</td><td>3-5元</td><td>儿童客户</td></tr>
+                    </table>
+                </div>
+                <p><span class="cost-tag">💰 月成本估算：按每月10人生日客户，约100-200元</span></p>
+            </div>
+        </section>
+
+        <!-- ==================== 活动四：学校合作方案 ==================== -->
+        <section id="channel-school" class="section">
+            <h2 class="section-title">学校合作方案</h2>
+            <p class="section-subtitle">活动四：渠道深度合作 · 批量获客 · 预算300元/学期</p>
+
+            <div class="card">
+                <h3 class="card-title">活动设计思路</h3>
+                <p>学校是儿童牙科的重要渠道，一次合作可覆盖几十到上百家庭。核心策略：<strong>公益服务换合作机会 + 学生优惠吸引家长</strong></p>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">合作模式</h3>
+                <div class="table-container">
+                    <table>
+                        <tr><th>模式</th><th>内容</th><th>成本</th><th>预期效果</th></tr>
+                        <tr>
+                            <td><span class="tag tag-free">公益服务</span></td>
+                            <td>免费给学校提供口腔健康讲座</td>
+                            <td>0元</td>
+                            <td>增加学校好感度</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag tag-discount">团体涂氟</span></td>
+                            <td>组织班级统一来店涂氟</td>
+                            <td>人力成本</td>
+                            <td>批量获客</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag tag-hot">学生优惠卡</span></td>
+                            <td>发放学生专属优惠卡</td>
+                            <td>打印费50元</td>
+                            <td>长期转化</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">合作渠道拓展</h3>
+                <div class="table-container">
+                    <table>
+                        <tr><th>渠道</th><th>联系人</th><th>合作话术</th></tr>
+                        <tr><td>周边小学</td><td>校医/班主任</td><td>"我们想给学生做口腔健康公益讲座"</td></tr>
+                        <tr><td>幼儿园</td><td>园长/保健医</td><td>"提供免费涂氟服务，保护孩子牙齿"</td></tr>
+                        <tr><td>培训机构</td><td>负责人</td><td>"合作举办爱牙小课堂，给家长送福利"</td></tr>
+                        <tr><td>托管班</td><td>负责人</td><td>"给托管的孩子免费口腔检查"</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">学校合作话术</h3>
+                <div class="quote-box">
+                    <p><strong>联系幼儿园：</strong>您好，我是xxx口腔诊所的。我们想给咱们幼儿园的孩子提供免费涂氟公益服务，保护孩子的牙齿健康。您看可以安排一个时间，我们派医生过来给孩子涂氟吗？</p>
+                </div>
+                <div class="quote-box">
+                    <p><strong>联系学校：</strong>您好，我是xxx口腔诊所的。我们想在咱们学校做一个口腔健康公益讲座，给学生讲讲如何保护牙齿，还会给每个学生发放一张"爱牙优惠卡"，凭卡可以到店免费检查+涂氟。</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">学生优惠卡设计</h3>
+                <div class="highlight-box">
+                    <h4>🎓 学生爱牙卡</h4>
+                    <p>✅ 免费口腔检查+拍片</p>
+                    <p>✅ 免费涂氟1次</p>
+                    <p>✅ 补牙8折优惠</p>
+                    <p>✅ 家长陪同检查享5折</p>
+                    <p>有效期：本学期内</p>
+                </div>
+                <p><span class="cost-tag">💰 成本：打印500张约50元</span></p>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">执行流程</h3>
+                <div class="table-container">
+                    <table>
+                        <tr><th>步骤</th><th>动作</th><th>负责人</th></tr>
+                        <tr><td>1</td><td>列出周边学校/幼儿园/培训机构清单</td><td>店长</td></tr>
+                        <tr><td>2</td><td>电话联系或上门拜访</td><td>店长</td></tr>
+                        <tr><td>3</td><td>确定合作方式和时间</td><td>店长</td></tr>
+                        <tr><td>4</td><td>准备讲座资料/优惠卡/涂氟物资</td><td>前台</td></tr>
+                        <tr><td>5</td><td>到学校执行讲座/涂氟活动</td><td>医生+护士</td></tr>
+                        <tr><td>6</td><td>统计到店使用优惠卡的学生数量</td><td>前台</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h4>📊 预期效果</h4>
+                <p>• 合作学校：2-3所</p>
+                <p>• 发放优惠卡：200-500张</p>
+                <p>• 预计到店使用：50-100人</p>
+                <p>• 预计转化：20-30人</p>
+            </div>
+        </section>
+
+        <!-- ==================== 活动四：企业团检方案 ==================== -->
+        <section id="channel-company" class="section">
+            <h2 class="section-title">企业团检方案</h2>
+            <p class="section-subtitle">活动四：渠道深度合作 · 高价值客户开发 · 预算200元/年</p>
+
+            <div class="card">
+                <h3 class="card-title">活动设计思路</h3>
+                <p>企业员工是高价值客户群体，消费能力强、决策快。核心策略：<strong>企业福利合作 + 员工团购优惠</strong></p>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">合作模式</h3>
+                <div class="table-container">
+                    <table>
+                        <tr><th>模式</th><th>内容</th><th>适合企业</th></tr>
+                        <tr>
+                            <td><span class="tag tag-hot">企业团购</span></td>
+                            <td>企业统一采购洗牙套餐给员工福利</td>
+                            <td>50人以上企业</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag tag-discount">员工优惠</span></td>
+                            <td>员工凭工牌到店享专属折扣</td>
+                            <td>周边企业</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag">驻点检查</span></td>
+                            <td>到企业现场做口腔检查</td>
+                            <td>大型企业</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">企业套餐设计</h3>
+                <div class="highlight-box orange">
+                    <h4>🏢 企业员工爱牙套餐</h4>
+                    <p>套餐A：洗牙套餐 88元/人（原价200元）</p>
+                    <p>套餐B：检查+洗牙套餐 128元/人（原价250元）</p>
+                    <p>套餐C：全家护牙套餐 199元/2大1小（原价400元）</p>
+                    <p>团购优惠：10人以上再享9折</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">合作渠道拓展</h3>
+                <div class="table-container">
+                    <table>
+                        <tr><th>渠道</th><th>联系人</th><th>合作话术</th></tr>
+                        <tr><td>周边写字楼</td><td>行政/HR</td><td>"给员工送份健康福利，团购洗牙套餐"</td></tr>
+                        <tr><td>工厂</td><td>人事部</td><td>"员工口腔检查公益服务"</td></tr>
+                        <tr><td>商场/餐饮</td><td>老板/店长</td><td>"员工专属看牙优惠"</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">企业合作话术</h3>
+                <div class="quote-box">
+                    <p>您好，我是xxx口腔诊所的。我们想给咱们公司的员工提供一份口腔健康福利。我们有企业团购套餐，洗牙只要88元，比市场价便宜一半多。您看要不要考虑作为员工福利采购一些？或者我们可以给员工发专属优惠卡，员工自己到店消费也能打折。</p>
                 </div>
             </div>
 
@@ -1124,48 +1486,73 @@
                 <div class="table-container">
                     <table>
                         <tr><th>步骤</th><th>动作</th><th>负责人</th></tr>
-                        <tr><td>1</td><td>客户表达镶牙意向</td><td>医生初步检查</td></tr>
-                        <tr><td>2</td><td>告知免费方案设计活动</td><td>前台/医生</td></tr>
-                        <tr><td>3</td><td>安排取模（免费）</td><td>护士</td></tr>
-                        <tr><td>4</td><td>方案设计</td><td>医生</td></tr>
-                        <tr><td>5</td><td>方案讲解+报价</td><td>医生</td></tr>
-                        <tr><td>6</td><td>客户考虑或成交</td><td>前台跟进</td></tr>
+                        <tr><td>1</td><td>列出周边企业清单</td><td>店长</td></tr>
+                        <tr><td>2</td><td>准备企业合作方案资料</td><td>店长</td></tr>
+                        <tr><td>3</td><td>上门拜访企业HR/行政</td><td>店长</td></tr>
+                        <tr><td>4</td><td>确定合作方式和套餐</td><td>店长</td></tr>
+                        <tr><td>5</td><td>提供员工专属优惠卡</td><td>前台</td></tr>
+                        <tr><td>6</td><td>统计到店消费情况</td><td>前台</td></tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 活动四：社区定点服务 ==================== -->
+        <section id="channel-community" class="section">
+            <h2 class="section-title">社区定点服务</h2>
+            <p class="section-subtitle">活动四：渠道深度合作 · 建立长期关系 · 预算100元/月</p>
+
+            <div class="card">
+                <h3 class="card-title">活动设计思路</h3>
+                <p>与社区建立长期合作关系，成为社区"指定牙科服务点"。核心策略：<strong>定期义诊 + 社区推荐返佣</strong></p>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">合作模式</h3>
+                <div class="table-container">
+                    <table>
+                        <tr><th>模式</th><th>内容</th><th>频率</th><th>成本</th></tr>
+                        <tr>
+                            <td><span class="tag tag-hot">定点义诊</span></td>
+                            <td>每月到小区做免费口腔检查</td>
+                            <td>每月1次</td>
+                            <td>约100元/次</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag tag-discount">业主优惠</span></td>
+                            <td>小区业主到店享专属折扣</td>
+                            <td>长期</td>
+                            <td>0元</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag">物业合作</span></td>
+                            <td>物业推荐客户享合作分成</td>
+                            <td>长期</td>
+                            <td>成交后返佣</td>
+                        </tr>
                     </table>
                 </div>
             </div>
 
             <div class="card">
-                <h3 class="card-title">跟进话术（3天后）</h3>
-                <div class="quote-box">
-                    <p>"您好，我是xxx口腔诊所的小王，您的镶牙方案设计好了，医生给您做了详细分析。您看什么时候方便过来了解一下？不着急决定，先看看方案适不适合您。"</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 矫正活动执行 -->
-        <section id="orthodontics" class="section">
-            <h2 class="section-title">矫正活动执行手册</h2>
-
-            <div class="card">
-                <h3 class="card-title">活动内容</h3>
-                <div class="highlight-box">
-                    <h4>🎁 矫正优惠</h4>
-                    <p>体验价 <strong>99元</strong>（含拍片+检查+方案设计，原价500+）</p>
-                    <p>前10名报名 <strong>送保持器</strong>（价值1000+元）</p>
-                    <p>核心卖点：<span class="tag tag-hot">比传统矫正缩短一半时间</span></p>
+                <h3 class="card-title">社区业主卡设计</h3>
+                <div class="highlight-box purple">
+                    <h4>🏘️ xx小区业主专属卡</h4>
+                    <p>✅ 免费口腔检查（到店）</p>
+                    <p>✅ 洗牙8折优惠</p>
+                    <p>✅ 补牙镶牙9折优惠</p>
+                    <p>✅ 儿童涂氟免费</p>
+                    <p>凭业主卡/物业证明即可享受</p>
                 </div>
             </div>
 
             <div class="card">
-                <h3 class="card-title">核心卖点话术</h3>
+                <h3 class="card-title">物业合作话术</h3>
                 <div class="quote-box">
-                    <p>"我们的矫正技术和传统的不一样，能缩短一半时间。传统的可能要2年，我们最快1年就能完成。"</p>
+                    <p>您好，我是xxx口腔诊所的。我们想跟咱们物业合作，给业主提供口腔健康服务。我们可以每月到小区做一次免费义诊，业主到店看牙还能享专属折扣。您看可以安排一下吗？</p>
                 </div>
                 <div class="quote-box">
-                    <p>"您可以先做个方案看看，体验价99元，包含拍片、检查、方案设计，原价要500多呢。"</p>
-                </div>
-                <div class="quote-box">
-                    <p>"如果您确认要做，前10名报名我们还送保持器，价值1000多块钱。"</p>
+                    <p><strong>谈合作分成：</strong>另外，如果物业帮我们推荐客户，成交后我们可以给您返佣，比如洗牙返10元，补牙返50元。这样对物业也是一笔额外收入。</p>
                 </div>
             </div>
 
@@ -1173,69 +1560,95 @@
                 <h3 class="card-title">执行流程</h3>
                 <div class="table-container">
                     <table>
-                        <tr><th>步骤</th><th>动作</th><th>负责人</th></tr>
-                        <tr><td>1</td><td>客户咨询矫正</td><td>前台登记</td></tr>
-                        <tr><td>2</td><td>安排矫正咨询时间</td><td>前台</td></tr>
-                        <tr><td>3</td><td>矫正咨询+检查+拍片</td><td>医生</td></tr>
-                        <tr><td>4</td><td>强调时间优势</td><td>医生讲解方案</td></tr>
-                        <tr><td>5</td><td>报价+活动优惠</td><td>前台</td></tr>
-                        <tr><td>6</td><td>促成成交或跟进</td><td>前台</td></tr>
+                        <tr><th>时间</th><th>动作</th><th>负责人</th></tr>
+                        <tr><td>月初</td><td>联系物业确定本月义诊时间</td><td>店长</td></tr>
+                        <tr><td>义诊前3天</td><td>让物业在业主群发活动通知</td><td>物业</td></tr>
+                        <tr><td>义诊当天</td><td>到小区做免费检查+宣传</td><td>全员</td></tr>
+                        <tr><td>义诊后</td><td>登记客户信息，后续跟进</td><td>前台</td></tr>
+                        <tr><td>月底</td><td>统计成交情况，返佣给物业</td><td>店长</td></tr>
                     </table>
                 </div>
             </div>
 
             <div class="card">
-                <h3 class="card-title">跟进话术（1周后）</h3>
-                <div class="quote-box">
-                    <p>"您好，我是xxx口腔诊所的小王。上次您做的矫正方案，医生这边还给您保留着。我们的活动快结束了，送保持器的名额只剩几个了，您看要不要考虑一下？矫正越早做越快完成，我们的技术比传统缩短一半时间呢。"</p>
+                <h3 class="card-title">返佣参考标准</h3>
+                <div class="table-container">
+                    <table>
+                        <tr><th>服务</th><th>返佣金额</th><th>备注</th></tr>
+                        <tr><td>洗牙</td><td>10元/人</td><td>成交后结算</td></tr>
+                        <tr><td>补牙</td><td>50元/人</td><td>成交后结算</td></tr>
+                        <tr><td>镶牙</td><td>100元/人</td><td>成交后结算</td></tr>
+                        <tr><td>矫正</td><td>200元/人</td><td>成交后结算</td></tr>
+                    </table>
                 </div>
+                <p><span class="cost-tag">💰 成本分析：返佣只在成交后支付，无风险成本</span></p>
             </div>
         </section>
 
-        <!-- 执行时间总表 -->
+        <!-- ==================== 执行时间总表 ==================== -->
         <section id="schedule" class="section">
             <h2 class="section-title">执行时间总表</h2>
+            <p class="section-subtitle">四套方案组合执行建议</p>
 
             <div class="card">
-                <h3 class="card-title">每日执行</h3>
+                <h3 class="card-title">日常执行（活动一+活动三）</h3>
                 <div class="table-container">
                     <table>
                         <tr><th>时间</th><th>活动</th><th>动作</th></tr>
-                        <tr><td>每天</td><td>免费检查</td><td>预留9:00-11:00时段</td></tr>
-                        <tr><td>每天</td><td>裂变植入</td><td>每位客户结账时提醒</td></tr>
+                        <tr><td>每天</td><td>活动一</td><td>预留免费检查时段（9:00-11:00）</td></tr>
+                        <tr><td>每天</td><td>活动一</td><td>结账时提醒裂变推荐</td></tr>
+                        <tr><td>每周一</td><td>活动一</td><td>发布本周活动海报到朋友圈</td></tr>
+                        <tr><td>每周五</td><td>活动三</td><td>发送下周生日客户祝福短信</td></tr>
+                        <tr><td>每周日</td><td>活动一</td><td>统计本周数据</td></tr>
                     </table>
                 </div>
             </div>
 
             <div class="card">
-                <h3 class="card-title">每周执行</h3>
+                <h3 class="card-title">每周执行（活动四）</h3>
                 <div class="table-container">
                     <table>
                         <tr><th>时间</th><th>活动</th><th>动作</th></tr>
-                        <tr><td>每周一</td><td>活动宣传</td><td>发布本周活动到朋友圈/社群</td></tr>
-                        <tr><td>每周二</td><td>渠道联系</td><td>确认周六涂氟名额</td></tr>
-                        <tr><td>每周六</td><td>儿童涂氟日</td><td>9:00-12:00</td></tr>
-                        <tr><td>每周日</td><td>数据统计</td><td>统计本周客流、转化、裂变数据</td></tr>
+                        <tr><td>每周二</td><td>活动四</td><td>拜访学校/幼儿园</td></tr>
+                        <tr><td>每周四</td><td>活动四</td><td>拜访企业/物业</td></tr>
+                        <tr><td>每月初</td><td>活动四</td><td>确定本月社区义诊时间</td></tr>
+                        <tr><td>每月15日</td><td>活动四</td><td>社区义诊日</td></tr>
                     </table>
                 </div>
             </div>
 
             <div class="card">
-                <h3 class="card-title">每月执行</h3>
+                <h3 class="card-title">节日执行（活动二）</h3>
                 <div class="table-container">
                     <table>
-                        <tr><th>时间</th><th>活动</th><th>动作</th></tr>
-                        <tr><td>每月1-5日</td><td>义诊筹备</td><td>联系社区确认场地</td></tr>
-                        <tr><td>每月15日</td><td>老人义诊日</td><td>9:00-11:00</td></tr>
-                        <tr><td>每月最后一周</td><td>矫正体验周</td><td>重点推广矫正活动</td></tr>
+                        <tr><th>节日</th><th>活动时间</th><th>筹备开始时间</th></tr>
+                        <tr><td>六一儿童节</td><td>5月25日-6月10日</td><td>5月15日</td></tr>
+                        <tr><td>9·20爱牙日</td><td>9月15日-9月25日</td><td>9月1日</td></tr>
+                        <tr><td>春节</td><td>腊月二十-正月十五</td><td>腊月初十</td></tr>
+                        <tr><td>中秋/国庆</td><td>9月25日-10月10日</td><td>9月15日</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">月预算分配建议</h3>
+                <div class="table-container">
+                    <table>
+                        <tr><th>活动</th><th>月预算</th><th>占比</th></tr>
+                        <tr><td>活动一：免费引流</td><td>800元</td><td>50%</td></tr>
+                        <tr><td>活动三：会员运营</td><td>200元</td><td>12%</td></tr>
+                        <tr><td>活动四：渠道合作</td><td>200元</td><td>12%</td></tr>
+                        <tr><td>预留（活动二节日用）</td><td>400元</td><td>26%</td></tr>
+                        <tr><td><strong>总计</strong></td><td><strong>1600元/月</strong></td><td>100%</td></tr>
                     </table>
                 </div>
             </div>
         </section>
 
-        <!-- 数据追踪模板 -->
+        <!-- ==================== 数据追踪模板 ==================== -->
         <section id="tracking" class="section">
             <h2 class="section-title">数据追踪模板</h2>
+            <p class="section-subtitle">每周统计，每月复盘</p>
 
             <div class="card">
                 <h3 class="card-title">每周统计表</h3>
@@ -1244,11 +1657,9 @@
                         <tr><th>指标</th><th>本周数据</th><th>上周数据</th><th>变化</th></tr>
                         <tr><td>免费检查人数</td><td></td><td></td><td></td></tr>
                         <tr><td>涂氟人数</td><td></td><td></td><td></td></tr>
-                        <tr><td>义诊人数</td><td></td><td></td><td></td></tr>
                         <tr><td>补牙成交数</td><td></td><td></td><td></td></tr>
                         <tr><td>镶牙成交数</td><td></td><td></td><td></td></tr>
                         <tr><td>矫正成交数</td><td></td><td></td><td></td></tr>
-                        <tr><td>家庭卡办理数</td><td></td><td></td><td></td></tr>
                         <tr><td>储值卡办理数</td><td></td><td></td><td></td></tr>
                         <tr><td>裂变推荐数</td><td></td><td></td><td></td></tr>
                         <tr><td><strong>总营收</strong></td><td></td><td></td><td></td></tr>
@@ -1257,28 +1668,28 @@
             </div>
 
             <div class="card">
-                <h3 class="card-title">转化漏斗追踪</h3>
+                <h3 class="card-title">渠道效果追踪</h3>
                 <div class="table-container">
                     <table>
-                        <tr><th>阶段</th><th>人数</th><th>转化率</th></tr>
-                        <tr><td>免费检查进店</td><td></td><td>100%</td></tr>
-                        <tr><td>发现问题需处理</td><td></td><td>%</td></tr>
-                        <tr><td>当天成交</td><td></td><td>%</td></tr>
-                        <tr><td>3天回访后成交</td><td></td><td>%</td></tr>
-                        <tr><td>总转化率</td><td></td><td>%</td></tr>
+                        <tr><th>渠道</th><th>本月进店</th><th>成交数</th><th>转化率</th></tr>
+                        <tr><td>免费检查</td><td></td><td></td><td></td></tr>
+                        <tr><td>学校合作</td><td></td><td></td><td></td></tr>
+                        <tr><td>企业合作</td><td></td><td></td><td></td></tr>
+                        <tr><td>社区义诊</td><td></td><td></td><td></td></tr>
+                        <tr><td>裂变推荐</td><td></td><td></td><td></td></tr>
                     </table>
                 </div>
             </div>
 
             <div class="card">
-                <h3 class="card-title">裂变效果追踪</h3>
+                <h3 class="card-title">活动效果追踪</h3>
                 <div class="table-container">
                     <table>
-                        <tr><th>指标</th><th>本周</th><th>累计</th></tr>
-                        <tr><td>老客户推荐新客户数</td><td></td><td></td></tr>
-                        <tr><td>新客户首次消费数</td><td></td><td></td></tr>
-                        <tr><td>裂变转化率</td><td></td><td></td></tr>
-                        <tr><td>健康大使人数</td><td></td><td></td></tr>
+                        <tr><th>活动</th><th>投入成本</th><th>带来营收</th><th>ROI</th></tr>
+                        <tr><td>活动一：免费引流</td><td></td><td></td><td></td></tr>
+                        <tr><td>活动二：节日营销</td><td></td><td></td><td></td></tr>
+                        <tr><td>活动三：会员运营</td><td></td><td></td><td></td></tr>
+                        <tr><td>活动四：渠道合作</td><td></td><td></td><td></td></tr>
                     </table>
                 </div>
             </div>
@@ -1295,33 +1706,30 @@
             sidebar.classList.toggle('active');
             overlay.classList.toggle('active');
             menuToggle.classList.toggle('active');
-
-            // 禁止/恢复body滚动
             document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // 折叠组切换
+        function toggleGroup(groupId) {
+            const group = document.getElementById(groupId);
+            group.classList.toggle('collapsed');
         }
 
         // 切换内容区域
         function showSection(sectionId) {
-            // 隐藏所有section
             document.querySelectorAll('.section').forEach(section => {
                 section.classList.remove('active');
             });
-
-            // 显示目标section
             document.getElementById(sectionId).classList.add('active');
 
-            // 更新导航高亮
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
             });
             event.target.classList.add('active');
 
-            // 移动端关闭菜单
             if (window.innerWidth <= 768) {
                 toggleMenu();
             }
-
-            // 滚动到顶部
             window.scrollTo(0, 0);
         }
 
@@ -1332,7 +1740,6 @@
             const menuToggle = document.getElementById('menuToggle');
 
             if (window.innerWidth > 768) {
-                // 大屏幕时重置状态
                 sidebar.classList.remove('active');
                 overlay.classList.remove('active');
                 menuToggle.classList.remove('active');
